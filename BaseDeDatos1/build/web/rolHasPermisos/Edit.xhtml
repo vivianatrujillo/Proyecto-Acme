@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditRolHasPermisosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditRolHasPermisosLabel_rolPermisos}" for="rolPermisos" />
+                    <h:inputText id="rolPermisos" value="#{rolHasPermisosController.selected.rolPermisos}" title="#{bundle.EditRolHasPermisosTitle_rolPermisos}" required="true" requiredMessage="#{bundle.EditRolHasPermisosRequiredMessage_rolPermisos}"/>
+                    <h:outputLabel value="#{bundle.EditRolHasPermisosLabel_codPermiso}" for="codPermiso" />
+                    <h:selectOneMenu id="codPermiso" value="#{rolHasPermisosController.selected.codPermiso}" title="#{bundle.EditRolHasPermisosTitle_codPermiso}" required="true" requiredMessage="#{bundle.EditRolHasPermisosRequiredMessage_codPermiso}">
+                        <f:selectItems value="#{permisosController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditRolHasPermisosLabel_codRol}" for="codRol" />
+                    <h:selectOneMenu id="codRol" value="#{rolHasPermisosController.selected.codRol}" title="#{bundle.EditRolHasPermisosTitle_codRol}" required="true" requiredMessage="#{bundle.EditRolHasPermisosRequiredMessage_codRol}">
+                        <f:selectItems value="#{rolController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{rolHasPermisosController.update}" value="#{bundle.EditRolHasPermisosSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditRolHasPermisosViewLink}"/>
+                <br />
+                <h:commandLink action="#{rolHasPermisosController.prepareList}" value="#{bundle.EditRolHasPermisosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditRolHasPermisosIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

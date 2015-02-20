@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListValoracionTratamientoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListValoracionTratamientoEmpty}" rendered="#{valoracionTratamientoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{valoracionTratamientoController.items.rowCount > 0}">
+                    <h:outputText value="#{valoracionTratamientoController.pagination.pageFirstItem + 1}..#{valoracionTratamientoController.pagination.pageLastItem + 1}/#{valoracionTratamientoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{valoracionTratamientoController.previous}" value="#{bundle.Previous} #{valoracionTratamientoController.pagination.pageSize}" rendered="#{valoracionTratamientoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{valoracionTratamientoController.next}" value="#{bundle.Next} #{valoracionTratamientoController.pagination.pageSize}" rendered="#{valoracionTratamientoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{valoracionTratamientoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListValoracionTratamientoTitle_codValoracionTratamientocol}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codValoracionTratamientocol}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListValoracionTratamientoTitle_idTratamiento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTratamiento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListValoracionTratamientoTitle_idValoracion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idValoracion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{valoracionTratamientoController.prepareView}" value="#{bundle.ListValoracionTratamientoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{valoracionTratamientoController.prepareEdit}" value="#{bundle.ListValoracionTratamientoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{valoracionTratamientoController.destroy}" value="#{bundle.ListValoracionTratamientoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{valoracionTratamientoController.prepareCreate}" value="#{bundle.ListValoracionTratamientoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListValoracionTratamientoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
