@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPacienteEnfermedadEnfermedadTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPacienteEnfermedadEnfermedadLabel_pacienteEnfermedadEnfermedadPK_codPacienteEnfermedadEnfermedad}" for="pacienteEnfermedadEnfermedadPK_codPacienteEnfermedadEnfermedad" />
+                    <h:inputText id="pacienteEnfermedadEnfermedadPK_codPacienteEnfermedadEnfermedad" value="#{pacienteEnfermedadEnfermedadController.selected.pacienteEnfermedadEnfermedadPK.codPacienteEnfermedadEnfermedad}" title="#{bundle.EditPacienteEnfermedadEnfermedadTitle_pacienteEnfermedadEnfermedadPK_codPacienteEnfermedadEnfermedad}" required="true" requiredMessage="#{bundle.EditPacienteEnfermedadEnfermedadRequiredMessage_pacienteEnfermedadEnfermedadPK_codPacienteEnfermedadEnfermedad}"/>
+                    <h:outputLabel value="#{bundle.EditPacienteEnfermedadEnfermedadLabel_pacienteEnfermedad}" for="pacienteEnfermedad" />
+                    <h:selectOneMenu id="pacienteEnfermedad" value="#{pacienteEnfermedadEnfermedadController.selected.pacienteEnfermedad}" title="#{bundle.EditPacienteEnfermedadEnfermedadTitle_pacienteEnfermedad}" required="true" requiredMessage="#{bundle.EditPacienteEnfermedadEnfermedadRequiredMessage_pacienteEnfermedad}">
+                        <f:selectItems value="#{pacienteEnfermedadController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPacienteEnfermedadEnfermedadLabel_enfermedad}" for="enfermedad" />
+                    <h:selectOneMenu id="enfermedad" value="#{pacienteEnfermedadEnfermedadController.selected.enfermedad}" title="#{bundle.EditPacienteEnfermedadEnfermedadTitle_enfermedad}" required="true" requiredMessage="#{bundle.EditPacienteEnfermedadEnfermedadRequiredMessage_enfermedad}">
+                        <f:selectItems value="#{enfermedadController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{pacienteEnfermedadEnfermedadController.update}" value="#{bundle.EditPacienteEnfermedadEnfermedadSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPacienteEnfermedadEnfermedadViewLink}"/>
+                <br />
+                <h:commandLink action="#{pacienteEnfermedadEnfermedadController.prepareList}" value="#{bundle.EditPacienteEnfermedadEnfermedadShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPacienteEnfermedadEnfermedadIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

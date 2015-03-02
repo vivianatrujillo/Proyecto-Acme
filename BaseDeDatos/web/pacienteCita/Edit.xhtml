@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPacienteCitaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPacienteCitaLabel_fecha}" for="fecha" />
+                    <h:inputText id="fecha" value="#{pacienteCitaController.selected.fecha}" title="#{bundle.EditPacienteCitaTitle_fecha}" required="true" requiredMessage="#{bundle.EditPacienteCitaRequiredMessage_fecha}">
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPacienteCitaLabel_hora}" for="hora" />
+                    <h:inputText id="hora" value="#{pacienteCitaController.selected.hora}" title="#{bundle.EditPacienteCitaTitle_hora}" required="true" requiredMessage="#{bundle.EditPacienteCitaRequiredMessage_hora}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPacienteCitaLabel_idPacienteCita}" for="idPacienteCita" />
+                    <h:inputText id="idPacienteCita" value="#{pacienteCitaController.selected.idPacienteCita}" title="#{bundle.EditPacienteCitaTitle_idPacienteCita}" required="true" requiredMessage="#{bundle.EditPacienteCitaRequiredMessage_idPacienteCita}"/>
+                    <h:outputLabel value="#{bundle.EditPacienteCitaLabel_idPaciente}" for="idPaciente" />
+                    <h:selectOneMenu id="idPaciente" value="#{pacienteCitaController.selected.idPaciente}" title="#{bundle.EditPacienteCitaTitle_idPaciente}" required="true" requiredMessage="#{bundle.EditPacienteCitaRequiredMessage_idPaciente}">
+                        <f:selectItems value="#{pacienteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPacienteCitaLabel_idCita}" for="idCita" />
+                    <h:selectOneMenu id="idCita" value="#{pacienteCitaController.selected.idCita}" title="#{bundle.EditPacienteCitaTitle_idCita}" required="true" requiredMessage="#{bundle.EditPacienteCitaRequiredMessage_idCita}">
+                        <f:selectItems value="#{citaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{pacienteCitaController.update}" value="#{bundle.EditPacienteCitaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPacienteCitaViewLink}"/>
+                <br />
+                <h:commandLink action="#{pacienteCitaController.prepareList}" value="#{bundle.EditPacienteCitaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPacienteCitaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

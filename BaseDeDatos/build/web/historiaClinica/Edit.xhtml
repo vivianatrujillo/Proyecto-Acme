@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditHistoriaClinicaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditHistoriaClinicaLabel_idHistoriaClinica}" for="idHistoriaClinica" />
+                    <h:inputText id="idHistoriaClinica" value="#{historiaClinicaController.selected.idHistoriaClinica}" title="#{bundle.EditHistoriaClinicaTitle_idHistoriaClinica}" required="true" requiredMessage="#{bundle.EditHistoriaClinicaRequiredMessage_idHistoriaClinica}"/>
+                    <h:outputLabel value="#{bundle.EditHistoriaClinicaLabel_idDiagnostico}" for="idDiagnostico" />
+                    <h:inputText id="idDiagnostico" value="#{historiaClinicaController.selected.idDiagnostico}" title="#{bundle.EditHistoriaClinicaTitle_idDiagnostico}" required="true" requiredMessage="#{bundle.EditHistoriaClinicaRequiredMessage_idDiagnostico}"/>
+                    <h:outputLabel value="#{bundle.EditHistoriaClinicaLabel_idFormatoDeEvolucion}" for="idFormatoDeEvolucion" />
+                    <h:inputText id="idFormatoDeEvolucion" value="#{historiaClinicaController.selected.idFormatoDeEvolucion}" title="#{bundle.EditHistoriaClinicaTitle_idFormatoDeEvolucion}" required="true" requiredMessage="#{bundle.EditHistoriaClinicaRequiredMessage_idFormatoDeEvolucion}"/>
+                    <h:outputLabel value="#{bundle.EditHistoriaClinicaLabel_idTratamiento}" for="idTratamiento" />
+                    <h:inputText id="idTratamiento" value="#{historiaClinicaController.selected.idTratamiento}" title="#{bundle.EditHistoriaClinicaTitle_idTratamiento}" required="true" requiredMessage="#{bundle.EditHistoriaClinicaRequiredMessage_idTratamiento}"/>
+                    <h:outputLabel value="#{bundle.EditHistoriaClinicaLabel_idTrabajador}" for="idTrabajador" />
+                    <h:selectOneMenu id="idTrabajador" value="#{historiaClinicaController.selected.idTrabajador}" title="#{bundle.EditHistoriaClinicaTitle_idTrabajador}" required="true" requiredMessage="#{bundle.EditHistoriaClinicaRequiredMessage_idTrabajador}">
+                        <f:selectItems value="#{trabajadorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{historiaClinicaController.update}" value="#{bundle.EditHistoriaClinicaSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditHistoriaClinicaViewLink}"/>
+                <br />
+                <h:commandLink action="#{historiaClinicaController.prepareList}" value="#{bundle.EditHistoriaClinicaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditHistoriaClinicaIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
